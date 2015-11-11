@@ -16,5 +16,6 @@ Gem::Specification.new do |s|
   s.files = Dir['{lib}/**/*', 'README.md']
 
   s.add_dependency 'sinatra'
+  s.add_dependency 'sinatra-contrib'
   s.add_development_dependency 'sqlite3'
 end

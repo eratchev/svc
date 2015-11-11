@@ -1,32 +1,18 @@
-require 'json'
 
 module Sinatra
   module Health
 
     module Helpers
-
-      private
-
-      def status_hash
-        @status_hash ||= {
-            application: 'TODO',
-            server_time: Time.now
-        }
-      end
-
-      def status_code
-        200
-      end
-
     end
 
     def self.registered(app)
       app.helpers Health::Helpers
+      app.set :service_name, 'unknown'
 
       app.get '/health_check' do
         content_type :json
-        status status_code
-        body status_hash.to_json
+        status 200
+        body json :service => settings.service_name, :server_time => Time.now
       end
 
     end
