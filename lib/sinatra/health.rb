@@ -1,3 +1,4 @@
+require 'sinatra/contrib/all'
 
 module Sinatra
   module Health
@@ -20,4 +21,5 @@ module Sinatra
   end
 
   register Health
+  register Sinatra::Contrib
 end
