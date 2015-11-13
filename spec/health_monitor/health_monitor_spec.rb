@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe HealthMonitor do
   let(:time) { Time.local(1990) }
+  let(:request) { Sinatra::Request.new(nil) }
 
   before do
     Timecop.freeze(time)
@@ -14,7 +15,7 @@ describe HealthMonitor do
   describe '#check' do
     context 'default providers' do
       it 'succesfully checks' do
-        expect(subject.check).to eq(
+        expect(subject.check(request)).to eq(
                                                        :results => [
                                                            'database' => {
                                                                message: '',
@@ -34,7 +35,7 @@ describe HealthMonitor do
       end
 
       it 'calls error_callback' do
-        expect(subject.check).to eq(
+        expect(subject.check(request)).to eq(
                                                        :results => [
                                                            {
                                                                'database' => {

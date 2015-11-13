@@ -15,8 +15,8 @@ module HealthMonitor
     yield configuration if block_given?
   end
 
-  def check
-    results = configuration.providers.map { |provider| provider_result(provider) }
+  def check(request)
+    results = configuration.providers.map { |provider| provider_result(provider, request) }
 
     {
         results: results,
@@ -26,8 +26,8 @@ module HealthMonitor
 
   private
 
-  def provider_result(provider)
-    monitor = provider.new
+  def provider_result(provider, request)
+    monitor = provider.new(request: request)
     monitor.check!
 
     {

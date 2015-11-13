@@ -15,10 +15,12 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{lib}/**/*', 'README.md']
 
-  s.add_dependency 'rake'
-  s.add_dependency 'sinatra'
-  s.add_dependency 'sinatra-contrib'
-  s.add_dependency 'pg'
   s.add_dependency 'activerecord'
+  s.add_dependency 'pg'
+  s.add_dependency 'rake'
+  s.add_dependency 'sidekiq'
+  s.add_dependency 'sinatra'
   s.add_dependency 'sinatra-activerecord'
+  s.add_dependency 'sinatra-initializers'
+  s.add_dependency 'sinatra-contrib'
 end
