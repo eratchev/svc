@@ -1,4 +1,5 @@
 require 'sinatra/contrib/all'
+require_relative '../../lib/health_monitor_sinatra'
 
 module Sinatra
   module Health
@@ -11,9 +12,10 @@ module Sinatra
       app.set :service_name, 'unknown'
 
       app.get '/health_check' do
+        res = HealthMonitor.check
         content_type :json
-        status 200
-        body json :service => settings.service_name, :providers => HealthMonitor.check
+        status status_code(res[:status])
+        body json res[:results]
       end
 
     end
