@@ -13,7 +13,7 @@ module Sinatra
       app.get '/health_check' do
         content_type :json
         status 200
-        body json :service => settings.service_name, :server_time => Time.now
+        body json :service => settings.service_name, :providers => HealthMonitor.check
       end
 
     end

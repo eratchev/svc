@@ -22,7 +22,8 @@ describe 'Health API' do
     it 'returns health check' do
       check = JSON.parse(last_response.body)
       expect(check['service']).to eq('testing')
-      expect(check['server_time']).not_to be nil
+      expect(check['providers']).not_to be nil
+      expect(check['providers']).to eq('TODO')
     end
   end
 
