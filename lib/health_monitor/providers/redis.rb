@@ -1,4 +1,4 @@
-require 'redis/namespace'
+require 'redis'
 
 module HealthMonitor
   module Providers
@@ -8,7 +8,7 @@ module HealthMonitor
       def check!
         time = Time.now.to_s(:db)
 
-        redis = ::Redis.new
+        redis = ::Redis.new(url: settings.redis_url)
         redis.set(key, time)
         fetched = redis.get(key)
 

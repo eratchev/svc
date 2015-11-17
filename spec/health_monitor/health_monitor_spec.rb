@@ -15,7 +15,7 @@ describe HealthMonitor do
   describe '#check' do
     context 'default providers' do
       it 'succesfully checks' do
-        expect(subject.check(request)).to eq(
+        expect(subject.check(request, nil)).to eq(
                                                        :results => [
                                                            'database' => {
                                                                message: '',
@@ -35,7 +35,7 @@ describe HealthMonitor do
       end
 
       it 'calls error_callback' do
-        expect(subject.check(request)).to eq(
+        expect(subject.check(request, nil)).to eq(
                                                        :results => [
                                                            {
                                                                'database' => {

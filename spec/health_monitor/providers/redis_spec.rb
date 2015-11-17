@@ -3,12 +3,16 @@ require 'spec_helper'
 describe HealthMonitor::Providers::Redis do
   IP = '0.0.0.0'
   let(:request) { Sinatra::Request.new(nil) }
+  let(:redis_url) { 'redis://localhost:6379/0' }
+
   let(:key) { "health:#{IP}" }
   let(:time) {Time.local(1990) }
 
-  subject { described_class.new(request: request) }
+  let(:settings) { double('settings') }
+  subject { described_class.new(request: request, settings: settings) }
 
   before do
+    allow(settings).to receive(:redis_url).and_return(redis_url)
     allow(request).to receive(:ip).and_return IP
     allow(Time).to receive(:now).and_return(time)
     allow_any_instance_of(Redis).to receive(:set).with(key, time.to_s(:db))
