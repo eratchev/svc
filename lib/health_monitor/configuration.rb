@@ -1,6 +1,6 @@
 module HealthMonitor
   class Configuration
-    PROVIDERS = [:database, :redis].freeze
+    PROVIDERS = [:database, :redis, :sidekiq].freeze
 
     attr_accessor :error_callback
     attr_reader :providers
