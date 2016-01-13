@@ -52,10 +52,9 @@ module Sinatra
                        })
       end
 
-      def halt_with_500_internal_server_error
-        halt 500, json({
-                           message: Rails.env.production? ? 'Internal server error: this is a problem on our end and we\'ve been notified of the issue' : env['sinatra.error'].message
-                       })
+      def halt_with_500_internal_server_error(message = nil)
+        message ||= 'Internal server error'
+        halt 500, json({message: message})
       end
     end
 
